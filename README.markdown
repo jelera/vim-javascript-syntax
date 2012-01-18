@@ -1,14 +1,19 @@
 #Javascript Syntax with Ajax support
+###Description
 I use this customized version of Yi Zhao's Javascript syntax file to enhance the readibility of my files. 
 The keywords included are Ajax methods and properties, Browser and DOM objects. 
 
 As this being my first attempt to contribute with the community, I'll take any suggestions to make it better. 
 
-Here are some screenshots http://twitpic.com/3ulapw http://twitpic.com/3ula28 
+###Screenshots
+Here are some screenshots [before](http://twitpic.com/3ulapw) [after](http://twitpic.com/3ula28). I'm using
+[Nazca Colorscheme](https://github.com/jelera/vim-nazca-colorscheme).
 
 For the colorscheme, I use vimscript#3427 (also tweaked by myself). I find it perfect for Web Development 
 
-Add these following lines to your favorite colorscheme and choose the colors you like the most 
+### Customization
+You can add these following lines to your favorite colorscheme (solarized, molokai, railcasts, etc) and choose
+the colors you like the most 
 
   ```vim
   "" Special for Javascript 
