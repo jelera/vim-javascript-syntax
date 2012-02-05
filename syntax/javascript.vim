@@ -259,21 +259,23 @@ if version >= 508 || !exists("did_javascript_syn_inits")
   HiLink javaScriptCssStyles            Label
 
   " Ajax Highlighting
-  HiLink javaScriptPropietaryObjects    Special
-  HiLink javaScriptAjaxObjects          Special
-  HiLink javaScriptBrowserObjects       Special
-  HiLink javaScriptDOMObjects           Special
-  HiLink javaScriptHtmlEvents           Special
+	HiLink javaScriptBrowserObjects     Constant
+	HiLink javaScriptDOMObjects         Constant
+	HiLink javaScriptDOMMethods         Exception
 
-  HiLink javaScriptDOMProperties        Keyword
-  HiLink javaScriptAjaxProperties       Keyword
-  HiLink javaScriptHtmlElemProperties   Keyword
-  HiLink javaScriptEventListenerKeyword Keyword
+	HiLink javaScriptDOMProperties      Type
 
-  HiLink javaScriptDOMMethods           Special
-  HiLink javaScriptAjaxMethods          Special
+	HiLink javaScriptAjaxObjects        Type
+	HiLink javaScriptAjaxMethods        Exception
+	HiLink javaScriptAjaxProperties     Keyword
 
-  HiLink javaScriptFuncName             Constant
+	HiLink javaScriptFuncName           Title
+
+	HiLink javaScriptHtmlElemProperties   Keyword
+	HiLink javaScriptEventListenerKeyword Keyword
+
+	HiLink javaScriptNumber            Number
+	HiLink javaScriptPropietaryObjects Exception
   delcommand HiLink
 endif
 
