@@ -89,7 +89,7 @@ syntax keyword javaScriptPropietaryMethods        attachEvent detachEvent cancel
 
 syntax keyword javaScriptHtmlElemProperties       className  clientHeight  clientLeft  clientTop  clientWidth  dir  href  id  innerHTML  lang  length  offsetHeight  offsetLeft  offsetParent  offsetTop  offsetWidth  scrollHeight  scrollLeft  scrollTop  scrollWidth  style  tabIndex  target  title
 
-syntax keyword javaScriptEventListenerKeywords    blur  click  focus  mouseover mouseout load item
+syntax keyword javaScriptEventListenerKeywords    blur click focus mouseover mouseout load item
 
 syntax keyword javaScriptEventListenerMethods     scrollIntoView  addEventListener  dispatchEvent  removeEventListener preventDefault stopPropagation
 " }}}
@@ -265,7 +265,7 @@ if version >= 508 || !exists("did_javascript_syn_inits")
 	HiLink javaScriptFuncName           Title
 
 	HiLink javaScriptHtmlEvents         Special
-	HiLink javaScriptHtmlElemProperties   Boolean
+	HiLink javaScriptHtmlElemProperties   Type
 
 	HiLink javaScriptEventListenerKeywords Keyword
 
