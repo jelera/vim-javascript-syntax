@@ -1,5 +1,9 @@
 #Enhanced Javascript Syntax for Vim
 
+###Credits
+- Zhao Yi, Claudio Fleiner, Scott Shattuck (This file is based on their hard work)
+- gumnos (From the #vim IRC Channel in Freenode) (Who helped me figured out the crazy Vim Regexes)
+
 ###Description
 This file is a fork of [this file](http://www.vim.org/scripts/script.php?script_id=1491) and [the stock one](http://fleiner.com/vim/download.html)
 
