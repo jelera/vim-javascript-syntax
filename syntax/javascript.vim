@@ -1,20 +1,13 @@
 " Vim syntax file
 " Language:     JavaScript
-" Maintainer:   Yi Zhao (ZHAOYI) <zzlinux AT hotmail DOT com>
-" Last Change:  June 4, 2009
-" Version:      0.7.7
-" Changes:      Add "undefined" as a type keyword
-"
-" TODO:
-"  - Add the HTML syntax inside the JSDoc
-"
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"
-" Modified Javascript Syntax file
-" By: Jose Elera Campana
-" Last Change: 01/17/12 15:26:51
-" Changes:
-" - Added support for Browser, DOM and Ajax Objects, Ajax methods and properties,
+" Maintainer:   Jose Elera Campana <https://github.com/jelera>
+" Last Change:  February 6, 2012
+" Version:      0.7.9
+" Changes:      Go to https://github.com/jelera/vim-javascript-syntax for
+"               recent changes.
+" Credits:      Zhao Yi, Claudio Fleiner, Scott Shattuck (This file is based
+"               on their hard work), gumnos (From the #vim IRC Channel in
+"               Freenode)
 
 if !exists("main_syntax")
   if version < 600
@@ -25,10 +18,9 @@ if !exists("main_syntax")
   let main_syntax = 'javascript'
 endif
 
-"" Drop fold if it set but VIM doesn't support it.
-let b:javascript_fold='true'
-if version < 600    " Don't support the old version
-  unlet! b:javascript_fold
+" Drop fold if it set but vim doesn't support it.
+if version < 600 && exists("javaScript_fold")
+  unlet javaScript_fold
 endif
 
 "" dollar sigh is permittd anywhere in an identifier
@@ -37,11 +29,10 @@ setlocal iskeyword+=$
 syntax sync fromstart
 
 "" JavaScript comments
-syntax keyword javaScriptCommentTodo    TODO FIXME XXX TBD contained
-syntax region  javaScriptLineComment    start=+\/\/+ end=+$+ keepend contains=javaScriptCommentTodo,@Spell
-syntax region  javaScriptLineComment    start=+^\s*\/\/+ skip=+\n\s*\/\/+ end=+$+ keepend contains=javaScriptCommentTodo,@Spell fold
-syntax region  javaScriptCvsTag         start="\$\cid:" end="\$" oneline contained
-syntax region  javaScriptComment        start="/\*"  end="\*/" contains=javaScriptCommentTodo,javaScriptCvsTag,@Spell fold
+syn keyword javaScriptCommentTodo      TODO FIXME XXX TBD contained
+syn match   javaScriptLineComment      "\/\/.*" contains=@Spell,javaScriptCommentTodo
+syn match   javaScriptCommentSkip      "^[ \t]*\*\($\|[ \t]\+\)"
+syn region  javaScriptComment	       start="/\*"  end="\*/" contains=@Spell,javaScriptCommentTodo
 
 "" JSDoc support start
 if !exists("javascript_ignore_javaScriptdoc")
@@ -63,27 +54,34 @@ endif   "" JSDoc end
 syntax case match
 
 "" Syntax in the JavaScript code
-syntax match   javaScriptSpecial        "\\\d\d\d\|\\x\x\{2\}\|\\u\x\{4\}\|\\."
-syntax region  javaScriptStringD        start=+"+  skip=+\\\\\|\\$"+  end=+"+  contains=javaScriptSpecial,@htmlPreproc
-syntax region  javaScriptStringS        start=+'+  skip=+\\\\\|\\$'+  end=+'+  contains=javaScriptSpecial,@htmlPreproc
-syntax region  javaScriptRegexpString   start=+/\(\*\|/\)\@!+ skip=+\\\\\|\\/+ end=+/[gim]\{,3}+ contains=javaScriptSpecial,@htmlPreproc oneline
-syntax match   javaScriptNumber         /\<-\=\d\+L\=\>\|\<0[xX]\x\+\>/
+syn match   javaScriptSpecial	       "\\\d\d\d\|\\."
+syn region  javaScriptStringD	       start=+"+  skip=+\\\\\|\\"+  end=+"\|$+	contains=javaScriptSpecial,@htmlPreproc
+syn region  javaScriptStringS	       start=+'+  skip=+\\\\\|\\'+  end=+'\|$+	contains=javaScriptSpecial,@htmlPreproc
+
+syn match   javaScriptSpecialCharacter "'\\.'"
+syn match   javaScriptNumber	       "-\=\<\d\+L\=\>\|0[xX][0-9a-fA-F]\+\>"
+syn region  javaScriptRegexpString     start=+/[^/*]+me=e-1 skip=+\\\\\|\\/+ end=+/[gi]\{0,2\}\s*$+ end=+/[gi]\{0,2\}\s*[;.,)\]}]+me=e-1 contains=@htmlPreproc oneline
+" syntax match   javaScriptSpecial        "\\\d\d\d\|\\x\x\{2\}\|\\u\x\{4\}\|\\."
+" syntax region  javaScriptStringD        start=+"+  skip=+\\\\\|\\$"+  end=+"+  contains=javaScriptSpecial,@htmlPreproc
+" syntax region  javaScriptStringS        start=+'+  skip=+\\\\\|\\$'+  end=+'+  contains=javaScriptSpecial,@htmlPreproc
+" syntax region  javaScriptRegexpString   start=+/\(\*\|/\)\@!+ skip=+\\\\\|\\/+ end=+/[gim]\{,3}+ contains=javaScriptSpecial,@htmlPreproc oneline
+" syntax match   javaScriptNumber         /\<-\=\d\+L\=\>\|\<0[xX]\x\+\>/
 syntax match   javaScriptFloat          /\<-\=\%(\d\+\.\d\+\|\d\+\.\|\.\d\+\)\%([eE][+-]\=\d\+\)\=\>/
-syntax match   javaScriptLabel          /\(?\s*\)\@<!\<\w\+\(\s*:\)\@=/
+" syntax match   javaScriptLabel          /\(?\s*\)\@<!\<\w\+\(\s*:\)\@=/
 
 "" JavaScript Prototype
 syntax keyword javaScriptPrototype      prototype
 
-"  Ajax Support   {{{
+"  DOM, Browser and Ajax Support   {{{
 """"""""""""""""""""""""
 syntax keyword javaScriptBrowserObjects           window navigator screen history location
 
 syntax keyword javaScriptDOMObjects               document event HTMLElement Anchor Area Base Body Button Form Frame Frameset Image Link Meta Option Select Style Table TableCell TableRow Textarea
-syntax keyword javaScriptDOMMethods               createTextNode createElement insertBefore replaceChild removeChild appendChild  hasChildNodes  cloneNode  normalize  isSupported  hasAttributes  getAttribute  setAttribute  removeAttribute  getAttributeNode  setAttributeNode  removeAttributeNode  getElementsByTagName  hasAttribute  getElementById
+syntax keyword javaScriptDOMMethods               createTextNode createElement insertBefore replaceChild removeChild appendChild  hasChildNodes  cloneNode  normalize  isSupported  hasAttributes  getAttribute  setAttribute  removeAttribute  getAttributeNode  setAttributeNode  removeAttributeNode  getElementsByTagName  hasAttribute  getElementById adoptNode close compareDocumentPosition createAttribute createCDATASection createComment createDocumentFragment createElementNS createEvent createExpression createNSResolver createProcessingInstruction createRange createTreeWalker elementFromPoint evaluate getBoxObjectFor getElementsByClassName getSelection getUserData hasFocus importNode
 syntax keyword javaScriptDOMProperties            nodeName  nodeValue  nodeType  parentNode  childNodes  firstChild  lastChild  previousSibling  nextSibling  attributes  ownerDocument  namespaceURI  prefix  localName  tagName
 
 syntax keyword javaScriptAjaxObjects              XMLHttpRequest
-syntax keyword javaScriptAjaxProperties           readyState responseText responseXML status statusText
+syntax keyword javaScriptAjaxProperties           readyState responseText responseXML statusText
 syntax keyword javaScriptAjaxMethods              onreadystatechange abort getAllResponseHeaders getResponseHeader open send setRequestHeader
 
 syntax keyword javaScriptPropietaryObjects        ActiveXObject
@@ -98,27 +96,31 @@ syntax keyword javaScriptEventListenerMethods     scrollIntoView  addEventListen
 
 "" Programm Keywords
 syntax keyword javaScriptSource         import export
-syntax keyword javaScriptType           const this undefined var void yield
-syntax keyword javaScriptOperator       delete new in instanceof let typeof
+syntax keyword javaScriptIdentifier     arguments this let var void yield
+syntax keyword javaScriptOperator       delete new instanceof typeof
 syntax keyword javaScriptBoolean        true false
-syntax keyword javaScriptNull           null
+syntax keyword javaScriptNull           null undefined
+syntax keyword javaScriptMessage		alert confirm prompt status
+syntax keyword javaScriptGlobal         self top parent
+syntax keyword javaScriptDeprecated     escape unescape all applets alinkColor bgColor fgColor linkColor vlinkColor xmlEncoding
 
 "" Statement Keywords
-syntax keyword javaScriptConditional    if else
-syntax keyword javaScriptRepeat         do while for
-syntax keyword javaScriptBranch         break continue switch case default return
-syntax keyword javaScriptStatement      try catch throw with finally
+syntax keyword javaScriptConditional    if else switch
+syntax keyword javaScriptRepeat         do while for in
+syntax keyword javaScriptBranch         break continue
+syntax keyword javaScriptLabel          case default
+syntax keyword javaScriptStatement      return with
 
-syntax keyword javaScriptGlobalObjects  Array Boolean Date Function Infinity JavaArray JavaClass JavaObject JavaPackage Math Number NaN Object Packages RegExp String Undefined java netscape sun
+syntax keyword javaScriptGlobalObjects  Array Boolean Date Function Infinity Math Number NaN Object Packages RegExp String netscape
 
-syntax keyword javaScriptExceptions     Error EvalError RangeError ReferenceError SyntaxError TypeError URIError
+syntax keyword javaScriptExceptions     try catch throw finally Error EvalError RangeError ReferenceError SyntaxError TypeError URIError
 
-syntax keyword javaScriptFutureKeys     abstract enum int short boolean export interface static byte extends long super char final native synchronized class float package throws const goto private transient debugger implements protected volatile double import public
+syntax keyword javaScriptReserved     abstract enum int short boolean export interface static byte extends long super char final native synchronized class float package throws const goto private transient debugger implements protected volatile double import public
 
 "" DOM/HTML/CSS specified things
 
   " DOM2 Objects
-  syntax keyword javaScriptGlobalObjects  DOMImplementation DocumentFragment Node NodeList NamedNodeMap CharacterData Attr Element Text Comment CDATASection DocumentType Notation Entity EntityReference ProcessingInstruction
+  syntax keyword javaScriptType  DOMImplementation DocumentFragment Node NodeList NamedNodeMap CharacterData Attr Element Text Comment CDATASection DocumentType Notation Entity EntityReference ProcessingInstruction
   syntax keyword javaScriptExceptions     DOMException
 
   " DOM2 CONSTANT
@@ -165,43 +167,23 @@ endif "DOM/HTML/CSS
 
 
 "" Code blocks
-syntax cluster javaScriptAll       contains=javaScriptComment,javaScriptLineComment,javaScriptDocComment,javaScriptStringD,javaScriptStringS,javaScriptRegexpString,javaScriptNumber,javaScriptFloat,javaScriptLabel,javaScriptSource,javaScriptType,javaScriptOperator,javaScriptBoolean,javaScriptNull,javaScriptFunction,javaScriptConditional,javaScriptRepeat,javaScriptBranch,javaScriptStatement,javaScriptGlobalObjects,javaScriptExceptions,javaScriptFutureKeys,javaScriptDomErrNo,javaScriptDomNodeConsts,javaScriptHtmlEvents,javaScriptDotNotation,javaScriptBrowserObjects,javaScriptDOMObjects,javaScriptAjaxObjects,javaScriptPropietaryObjects,javaScriptDOMMethods,javaScriptHtmlElemProperties,javaScriptDOMProperties,javaScriptEventListenerKeywords,javaScriptEventListenerMethods,javaScriptAjaxProperties,javaScriptAjaxMethods
-syntax region  javaScriptBracket   matchgroup=javaScriptBracket transparent start="\[" end="\]" contains=@javaScriptAll,javaScriptParensErrB,javaScriptParensErrC,javaScriptBracket,javaScriptParen,javaScriptBlock,@htmlPreproc
-syntax region  javaScriptParen     matchgroup=javaScriptParen   transparent start="("  end=")"  contains=@javaScriptAll,javaScriptParensErrA,javaScriptParensErrC,javaScriptParen,javaScriptBracket,javaScriptBlock,@htmlPreproc
-syntax region  javaScriptBlock     matchgroup=javaScriptBlock   transparent start="{"  end="}"  contains=@javaScriptAll,javaScriptParensErrA,javaScriptParensErrB,javaScriptParen,javaScriptBracket,javaScriptBlock,@htmlPreproc
-
-"" catch errors caused by wrong parenthesis
-syntax match   javaScriptParensError    ")\|}\|\]"
-syntax match   javaScriptParensErrA     contained "\]"
-syntax match   javaScriptParensErrB     contained ")"
-syntax match   javaScriptParensErrC     contained "}"
+syntax cluster javaScriptAll       contains=javaScriptComment,javaScriptLineComment,javaScriptDocComment,javaScriptStringD,javaScriptStringS,javaScriptRegexpString,javaScriptNumber,javaScriptFloat,javaScriptLabel,javaScriptSource,javaScriptType,javaScriptOperator,javaScriptBoolean,javaScriptNull,javaScriptFunction,javaScriptConditional,javaScriptGlobal,javaScriptRepeat,javaScriptBranch,javaScriptStatement,javaScriptGlobalObjects,javaScriptMessage,javaScriptIdentifier,javaScriptExceptions,javaScriptReserved,javaScriptDeprecated,javaScriptDomErrNo,javaScriptDomNodeConsts,javaScriptHtmlEvents,javaScriptDotNotation,javaScriptBrowserObjects,javaScriptDOMObjects,javaScriptAjaxObjects,javaScriptPropietaryObjects,javaScriptDOMMethods,javaScriptHtmlElemProperties,javaScriptDOMProperties,javaScriptEventListenerKeywords,javaScriptEventListenerMethods,javaScriptAjaxProperties,javaScriptAjaxMethods
 
 if main_syntax == "javascript"
   syntax sync clear
   syntax sync ccomment javaScriptComment minlines=200
-  syntax sync match javaScriptHighlight grouphere javaScriptBlock /{/
+  " syntax sync match javaScriptHighlight grouphere javaScriptBlock /{/
 endif
 
-"" Fold control
-if exists("b:javascript_fold")
-    syntax match   javaScriptFunction       /\<function\>/ nextgroup=javaScriptFuncName skipwhite
-    syntax match   javaScriptOpAssign       /=\@<!=/ nextgroup=javaScriptFuncBlock skipwhite skipempty
-    syntax region  javaScriptFuncName       contained matchgroup=javaScriptFuncName start=/\%(\$\|\w\)*\s*(/ end=/)/ contains=javaScriptLineComment,javaScriptComment nextgroup=javaScriptFuncBlock skipwhite skipempty
-    syntax region  javaScriptFuncBlock      contained matchgroup=javaScriptFuncBlock start="{" end="}" contains=@javaScriptAll,javaScriptParensErrA,javaScriptParensErrB,javaScriptParen,javaScriptBracket,javaScriptBlock fold
+syntax match   javaScriptFunction       /\<function\>/ nextgroup=javaScriptFuncName skipwhite
+syntax region  javaScriptFuncName       contained matchgroup=javaScriptFuncName start=/\%(\$\|\w\)*\s*(/ end=/)/ contains=javaScriptLineComment,javaScriptComment nextgroup=javaScriptFuncBlock skipwhite skipempty
+" syntax region  javaScriptFuncBlock      contained matchgroup=javaScriptFuncBlock start="{" end="}" contains=@javaScriptAll,javaScriptParensErrA,javaScriptParensErrB,javaScriptParen,javaScriptBracket,javaScriptBlock fold
 
-    if &l:filetype=='javascript' && !&diff
-      " Fold setting
-      " Redefine the foldtext (to show a JS function outline) and foldlevel
-      " only if the entire buffer is JavaScript, but not if JavaScript syntax
-      " is embedded in another syntax (e.g. HTML).
-      setlocal foldmethod=syntax
-      setlocal foldlevel=4
-    endif
-else
-    syntax keyword javaScriptFunction       function
-    setlocal foldmethod<
-    setlocal foldlevel<
-endif
+syn match	javaScriptBraces	   "[{}\[\]]"
+syn match	javaScriptParens	   "[()]"
+syn match	javaScriptOpSymbols	   "=\{1,3}\|!==\|!=\|<\|>\|>=\|<=\|++\|+=\|--\|-="
+syn match   javaScriptEndColons    "[;,]$"
+syn match   javaScriptLogicSymbols "\(&&\)\|\(||\)"
 
 " Define the default highlighting.
 " For version 5.7 and earlier: only when not done already
@@ -213,6 +195,12 @@ if version >= 508 || !exists("did_javascript_syn_inits")
   else
     command -nargs=+ HiLink hi def link <args>
   endif
+
+  HiLink javaScriptEndColons             Exception
+  HiLink javaScriptOpSymbols             Operator
+  HiLink javaScriptLogicSymbols         Boolean
+  HiLink javaScriptBraces	        	Function
+  HiLink javaScriptParens	        	Operator
   HiLink javaScriptComment              Comment
   HiLink javaScriptLineComment          Comment
   HiLink javaScriptDocComment           Comment
@@ -224,18 +212,23 @@ if version >= 508 || !exists("did_javascript_syn_inits")
   HiLink javaScriptStringS              String
   HiLink javaScriptStringD              String
   HiLink javaScriptRegexpString         String
+  HiLink javaScriptGlobal               Constant
   HiLink javaScriptCharacter            Character
   HiLink javaScriptPrototype            Type
   HiLink javaScriptConditional          Conditional
   HiLink javaScriptBranch               Conditional
+  HiLink javaScriptIdentifier           Identifier
   HiLink javaScriptRepeat               Repeat
   HiLink javaScriptStatement            Statement
   HiLink javaScriptFunction             Function
+  HiLink javaScriptMessage              Keyword
+  HiLink javaScriptDeprecated           Exception
   HiLink javaScriptError                Error
   HiLink javaScriptParensError          Error
   HiLink javaScriptParensErrA           Error
   HiLink javaScriptParensErrB           Error
   HiLink javaScriptParensErrC           Error
+  HiLink javaScriptReserved             Keyword
   HiLink javaScriptOperator             Operator
   HiLink javaScriptType                 Type
   HiLink javaScriptNull                 Type
@@ -271,8 +264,10 @@ if version >= 508 || !exists("did_javascript_syn_inits")
 
 	HiLink javaScriptFuncName           Title
 
+	HiLink javaScriptHtmlEvents         Special
 	HiLink javaScriptHtmlElemProperties   Boolean
-	HiLink javaScriptEventListenerKeyword Keyword
+
+	HiLink javaScriptEventListenerKeywords Keyword
 
 	HiLink javaScriptNumber            Number
 	HiLink javaScriptPropietaryObjects Constant
