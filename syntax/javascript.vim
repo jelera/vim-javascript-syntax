@@ -252,9 +252,9 @@ if version >= 508 || !exists("did_javascript_syn_inits")
   HiLink javaScriptCssStyles            Label
 
   " Ajax Highlighting
-	HiLink javaScriptBrowserObjects     htmlString
+	HiLink javaScriptBrowserObjects     Constant
 
-	HiLink javaScriptDOMObjects         htmlString
+	HiLink javaScriptDOMObjects         Constant
 	HiLink javaScriptDOMMethods         Exception
 	HiLink javaScriptDOMProperties      Type
 
