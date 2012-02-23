@@ -28,18 +28,17 @@ setlocal iskeyword+=$
 
 syntax sync fromstart
 
-"" JavaScript comments
+"" JavaScript comments"{{{
 syn keyword javaScriptCommentTodo      TODO FIXME XXX TBD contained
 syn match   javaScriptLineComment      "\/\/.*" contains=@Spell,javaScriptCommentTodo
 syn match   javaScriptCommentSkip      "^[ \t]*\*\($\|[ \t]\+\)"
 syn region  javaScriptComment	       start="/\*"  end="\*/" contains=@Spell,javaScriptCommentTodo
-
-"" JSDoc support start
+"}}}
+"" JSDoc support start"{{{
 if !exists("javascript_ignore_javaScriptdoc")
   syntax case ignore
 
-  "" syntax coloring for javadoc comments (HTML)
-  "syntax include @javaHtml <sfile>:p:h/html.vim
+" syntax coloring for JSDoc comments (HTML)
   "unlet b:current_syntax
 
   syntax region javaScriptDocComment    matchgroup=javaScriptComment start="/\*\*\s*$"  end="\*/" contains=javaScriptDocTags,javaScriptCommentTodo,javaScriptCvsTag,@javaScriptHtml,@Spell fold
@@ -50,10 +49,10 @@ if !exists("javascript_ignore_javaScriptdoc")
 
   syntax case match
 endif   "" JSDoc end
-
+"}}}
 syntax case match
 
-"" Syntax in the JavaScript code
+"" Syntax in the JavaScript code"{{{
 syn match   javaScriptSpecial	       "\\\d\d\d\|\\."
 syn region  javaScriptStringD	       start=+"+  skip=+\\\\\|\\"+  end=+"\|$+	contains=javaScriptSpecial,@htmlPreproc
 syn region  javaScriptStringS	       start=+'+  skip=+\\\\\|\\'+  end=+'\|$+	contains=javaScriptSpecial,@htmlPreproc
@@ -68,10 +67,10 @@ syn region  javaScriptRegexpString     start=+/[^/*]+me=e-1 skip=+\\\\\|\\/+ end
 " syntax match   javaScriptNumber         /\<-\=\d\+L\=\>\|\<0[xX]\x\+\>/
 syntax match   javaScriptFloat          /\<-\=\%(\d\+\.\d\+\|\d\+\.\|\.\d\+\)\%([eE][+-]\=\d\+\)\=\>/
 " syntax match   javaScriptLabel          /\(?\s*\)\@<!\<\w\+\(\s*:\)\@=/
-
-"" JavaScript Prototype
+"}}}
+"" JavaScript Prototype"{{{
 syntax keyword javaScriptPrototype      prototype
-
+"}}}
 "  DOM, Browser and Ajax Support   {{{
 """"""""""""""""""""""""
 syntax keyword javaScriptBrowserObjects           window navigator screen history location
@@ -93,8 +92,7 @@ syntax keyword javaScriptEventListenerKeywords    blur click focus mouseover mou
 
 syntax keyword javaScriptEventListenerMethods     scrollIntoView  addEventListener  dispatchEvent  removeEventListener preventDefault stopPropagation
 " }}}
-
-"" Programm Keywords
+"" Programm Keywords"{{{
 syntax keyword javaScriptSource         import export
 syntax keyword javaScriptIdentifier     arguments this let var void yield
 syntax keyword javaScriptOperator       delete new instanceof typeof
@@ -103,8 +101,8 @@ syntax keyword javaScriptNull           null undefined
 syntax keyword javaScriptMessage		alert confirm prompt status
 syntax keyword javaScriptGlobal         self top parent
 syntax keyword javaScriptDeprecated     escape unescape all applets alinkColor bgColor fgColor linkColor vlinkColor xmlEncoding
-
-"" Statement Keywords
+"}}}
+"" Statement Keywords"{{{
 syntax keyword javaScriptConditional    if else switch
 syntax keyword javaScriptRepeat         do while for in
 syntax keyword javaScriptBranch         break continue
@@ -116,35 +114,37 @@ syntax keyword javaScriptGlobalObjects  Array Boolean Date Function Infinity Mat
 syntax keyword javaScriptExceptions     try catch throw finally Error EvalError RangeError ReferenceError SyntaxError TypeError URIError
 
 syntax keyword javaScriptReserved     abstract enum int short boolean export interface static byte extends long super char final native synchronized class float package throws const goto private transient debugger implements protected volatile double import public
+"}}}
+"" DOM/HTML/CSS specified things"{{{
 
-"" DOM/HTML/CSS specified things
-
-  " DOM2 Objects
+  " DOM2 Objects"{{{
   syntax keyword javaScriptType  DOMImplementation DocumentFragment Node NodeList NamedNodeMap CharacterData Attr Element Text Comment CDATASection DocumentType Notation Entity EntityReference ProcessingInstruction
   syntax keyword javaScriptExceptions     DOMException
-
-  " DOM2 CONSTANT
+"}}}
+  " DOM2 CONSTANT"{{{
   syntax keyword javaScriptDomErrNo       INDEX_SIZE_ERR DOMSTRING_SIZE_ERR HIERARCHY_REQUEST_ERR WRONG_DOCUMENT_ERR INVALID_CHARACTER_ERR NO_DATA_ALLOWED_ERR NO_MODIFICATION_ALLOWED_ERR NOT_FOUND_ERR NOT_SUPPORTED_ERR INUSE_ATTRIBUTE_ERR INVALID_STATE_ERR SYNTAX_ERR INVALID_MODIFICATION_ERR NAMESPACE_ERR INVALID_ACCESS_ERR
   syntax keyword javaScriptDomNodeConsts  ELEMENT_NODE ATTRIBUTE_NODE TEXT_NODE CDATA_SECTION_NODE ENTITY_REFERENCE_NODE ENTITY_NODE PROCESSING_INSTRUCTION_NODE COMMENT_NODE DOCUMENT_NODE DOCUMENT_TYPE_NODE DOCUMENT_FRAGMENT_NODE NOTATION_NODE
-
-  " HTML events and internal variables
+"}}}
+  " HTML events and internal variables"{{{
   syntax case ignore
   syntax keyword javaScriptHtmlEvents     onblur onclick oncontextmenu ondblclick onfocus onkeydown onkeypress onkeyup onmousedown onmousemove onmouseout onmouseover onmouseup onresize onload onsubmit
   syntax case match
+"}}}
 
 " Follow stuff should be highligh within a special context
 " While it can't be handled with context depended with Regex based highlight
 " So, turn it off by default
 if exists("javascript_enable_domhtmlcss")
 
-    " DOM2 things
+    " DOM2 things"{{{
     syntax match javaScriptDomElemAttrs     contained /\%(nodeName\|nodeValue\|nodeType\|parentNode\|childNodes\|firstChild\|lastChild\|previousSibling\|nextSibling\|attributes\|ownerDocument\|namespaceURI\|prefix\|localName\|tagName\)\>/
     syntax match javaScriptDomElemFuncs     contained /\%(insertBefore\|replaceChild\|removeChild\|appendChild\|hasChildNodes\|cloneNode\|normalize\|isSupported\|hasAttributes\|getAttribute\|setAttribute\|removeAttribute\|getAttributeNode\|setAttributeNode\|removeAttributeNode\|getElementsByTagName\|getAttributeNS\|setAttributeNS\|removeAttributeNS\|getAttributeNodeNS\|setAttributeNodeNS\|getElementsByTagNameNS\|hasAttribute\|hasAttributeNS\)\>/ nextgroup=javaScriptParen skipwhite
-    " HTML things
+	"}}}
+    " HTML things"{{{
     syntax match javaScriptHtmlElemAttrs    contained /\%(className\|clientHeight\|clientLeft\|clientTop\|clientWidth\|dir\|id\|innerHTML\|lang\|length\|offsetHeight\|offsetLeft\|offsetParent\|offsetTop\|offsetWidth\|scrollHeight\|scrollLeft\|scrollTop\|scrollWidth\|style\|tabIndex\|title\)\>/
     syntax match javaScriptHtmlElemFuncs    contained /\%(blur\|click\|focus\|scrollIntoView\|addEventListener\|dispatchEvent\|removeEventListener\|item\)\>/ nextgroup=javaScriptParen skipwhite
-
-    " CSS Styles in JavaScript
+"}}}
+    " CSS Styles in JavaScript"{{{
     syntax keyword javaScriptCssStyles      contained color font fontFamily fontSize fontSizeAdjust fontStretch fontStyle fontVariant fontWeight letterSpacing lineBreak lineHeight quotes rubyAlign rubyOverhang rubyPosition
     syntax keyword javaScriptCssStyles      contained textAlign textAlignLast textAutospace textDecoration textIndent textJustify textJustifyTrim textKashidaSpace textOverflowW6 textShadow textTransform textUnderlinePosition
     syntax keyword javaScriptCssStyles      contained unicodeBidi whiteSpace wordBreak wordSpacing wordWrap writingMode
@@ -156,14 +156,14 @@ if exists("javascript_enable_domhtmlcss")
     syntax keyword javaScriptCssStyles      contained clear clip clipBottom clipLeft clipRight clipTop content counterIncrement counterReset cssFloat cursor direction display filter layoutGrid layoutGridChar layoutGridLine layoutGridMode layoutGridType
     syntax keyword javaScriptCssStyles      contained marks maxHeight maxWidth minHeight minWidth opacity MozOpacity overflow overflowX overflowY verticalAlign visibility zoom cssText
     syntax keyword javaScriptCssStyles      contained scrollbar3dLightColor scrollbarArrowColor scrollbarBaseColor scrollbarDarkShadowColor scrollbarFaceColor scrollbarHighlightColor scrollbarShadowColor scrollbarTrackColor
-
-    " Highlight ways
+"}}}
+    " Highlight ways"{{{
     syntax match javaScriptDotNotation      "\." nextgroup=javaScriptPrototype,javaScriptDomElemAttrs,javaScriptDomElemFuncs,javaScriptHtmlElemAttrs,javaScriptHtmlElemFuncs
     syntax match javaScriptDotNotation      "\.style\." nextgroup=javaScriptCssStyles
-
+"}}}
 endif "DOM/HTML/CSS
 
-"" end DOM/HTML/CSS specified things
+"" end DOM/HTML/CSS specified things""}}}
 
 
 "" Code blocks
@@ -184,6 +184,20 @@ syn match	javaScriptParens	   "[()]"
 syn match	javaScriptOpSymbols	   "=\{1,3}\|!==\|!=\|<\|>\|>=\|<=\|++\|+=\|--\|-="
 syn match   javaScriptEndColons    "[;,]$"
 syn match   javaScriptLogicSymbols "\(&&\)\|\(||\)"
+
+" JavaScriptFold Function {{{
+
+function! JavaScriptFold()
+	setl foldmethod=syntax
+	setl foldlevelstart=1
+	syn region foldBraces start=/{/ end=/}/ transparent fold keepend extend
+
+	setl foldtext=FoldText()
+endfunction
+
+au FileType javascript call JavaScriptFold()
+
+" }}}
 
 " Define the default highlighting.
 " For version 5.7 and earlier: only when not done already
