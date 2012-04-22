@@ -14,6 +14,11 @@ This version of this file features the following text highlights:
 - Browser, DOM and "Ajax" keywords like objects, methods, properties and others.
 - Operation, comparison and logical symbols (`=`,`==`,`===`,`!=`,etc.).
 
+To enable code folding add the following to your `.vimrc`.
+
+    au FileType javascript call JavaScriptFold()
+
+
 ###TODO
 You can help me improve it too.
 
