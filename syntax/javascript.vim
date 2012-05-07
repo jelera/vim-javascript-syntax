@@ -185,18 +185,25 @@ syn match	javaScriptOpSymbols	   "=\{1,3}\|!==\|!=\|<\|>\|>=\|<=\|++\|+=\|--\|-=
 syn match   javaScriptEndColons    "[;,]$"
 syn match   javaScriptLogicSymbols "\(&&\)\|\(||\)"
 
-" JavaScriptFold Function {{{
-
-function! JavaScriptFold()
-	setl foldmethod=syntax
-	setl foldlevelstart=1
-	syn region foldBraces start=/{/ end=/}/ transparent fold keepend extend
-
-	setl foldtext=FoldText()
-endfunction
-
-au FileType javascript call JavaScriptFold()
-
+"" Fold control {{{
+if exists("b:javascript_fold")
+    syntax match   javaScriptFunction       /\<function\>/ nextgroup=javaScriptFuncName skipwhite
+    syntax match   javaScriptOpAssign       /=\@<!=/ nextgroup=javaScriptFuncBlock skipwhite skipempty
+    syntax region  javaScriptFuncName       contained matchgroup=javaScriptFuncName start=/\%(\$\|\w\)*\s*(/ end=/)/ contains=javaScriptLineCo
+    syntax region  javaScriptFuncBlock      contained matchgroup=javaScriptFuncBlock start="{" end="}" contains=@javaScriptAll,javaScriptParen
+    if &l:filetype=='javascript' && !&diff
+      " Fold setting
+      " Redefine the foldtext (to show a JS function outline) and foldlevel
+      " only if the entire buffer is JavaScript, but not if JavaScript syntax
+      " is embedded in another syntax (e.g. HTML).
+      setlocal foldmethod=syntax
+      setlocal foldlevel=4
+    endif
+else
+    syntax keyword javaScriptFunction       function
+    setlocal foldmethod<
+    setlocal foldlevel<
+endif
 " }}}
 
 " Define the default highlighting.
