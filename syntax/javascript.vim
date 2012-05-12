@@ -182,7 +182,7 @@ syntax region  javaScriptFuncName       contained matchgroup=javaScriptFuncName 
 syn match	javaScriptBraces	   "[{}\[\]]"
 syn match	javaScriptParens	   "[()]"
 syn match	javaScriptOpSymbols	   "=\{1,3}\|!==\|!=\|<\|>\|>=\|<=\|++\|+=\|--\|-="
-syn match   javaScriptEndColons    "[;,]$"
+syn match   javaScriptEndColons    "[;,]"
 syn match   javaScriptLogicSymbols "\(&&\)\|\(||\)"
 
 " JavaScriptFold Function {{{
