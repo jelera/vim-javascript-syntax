@@ -28,6 +28,10 @@ setlocal iskeyword+=$
 
 syntax sync fromstart
 
+"" syntax coloring for Node.js shebang line
+syn match shebang "^#!.*/bin/env\s\+node\>"
+hi link shebang Comment
+
 "" JavaScript comments"{{{
 syn keyword javaScriptCommentTodo      TODO FIXME XXX TBD contained
 syn match   javaScriptLineComment      "\/\/.*" contains=@Spell,javaScriptCommentTodo
