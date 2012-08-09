@@ -167,7 +167,7 @@ endif "DOM/HTML/CSS
 
 
 "" Code blocks
-syntax cluster javaScriptAll       contains=javaScriptComment,javaScriptLineComment,javaScriptDocComment,javaScriptStringD,javaScriptStringS,javaScriptRegexpString,javaScriptNumber,javaScriptFloat,javaScriptLabel,javaScriptSource,javaScriptType,javaScriptOperator,javaScriptBoolean,javaScriptNull,javaScriptFunction,javaScriptConditional,javaScriptGlobal,javaScriptRepeat,javaScriptBranch,javaScriptStatement,javaScriptGlobalObjects,javaScriptMessage,javaScriptIdentifier,javaScriptExceptions,javaScriptReserved,javaScriptDeprecated,javaScriptDomErrNo,javaScriptDomNodeConsts,javaScriptHtmlEvents,javaScriptDotNotation,javaScriptBrowserObjects,javaScriptDOMObjects,javaScriptAjaxObjects,javaScriptPropietaryObjects,javaScriptDOMMethods,javaScriptHtmlElemProperties,javaScriptDOMProperties,javaScriptEventListenerKeywords,javaScriptEventListenerMethods,javaScriptAjaxProperties,javaScriptAjaxMethods
+syntax cluster javaScriptAll       contains=javaScriptComment,javaScriptLineComment,javaScriptDocComment,javaScriptStringD,javaScriptStringS,javaScriptRegexpString,javaScriptNumber,javaScriptFloat,javaScriptLabel,javaScriptSource,javaScriptType,javaScriptOperator,javaScriptBoolean,javaScriptNull,javaScriptFuncKeyword,javaScriptConditional,javaScriptGlobal,javaScriptRepeat,javaScriptBranch,javaScriptStatement,javaScriptGlobalObjects,javaScriptMessage,javaScriptIdentifier,javaScriptExceptions,javaScriptReserved,javaScriptDeprecated,javaScriptDomErrNo,javaScriptDomNodeConsts,javaScriptHtmlEvents,javaScriptDotNotation,javaScriptBrowserObjects,javaScriptDOMObjects,javaScriptAjaxObjects,javaScriptPropietaryObjects,javaScriptDOMMethods,javaScriptHtmlElemProperties,javaScriptDOMProperties,javaScriptEventListenerKeywords,javaScriptEventListenerMethods,javaScriptAjaxProperties,javaScriptAjaxMethods,javaScriptFuncArg
 
 if main_syntax == "javascript"
   syntax sync clear
@@ -175,8 +175,10 @@ if main_syntax == "javascript"
   " syntax sync match javaScriptHighlight grouphere javaScriptBlock /{/
 endif
 
-syntax match   javaScriptFunction       /\<function\>/ nextgroup=javaScriptFuncName skipwhite
-syntax region  javaScriptFuncName       contained matchgroup=javaScriptFuncName start=/\%(\$\|\w\)*\s*(/ end=/)/ contains=javaScriptLineComment,javaScriptComment nextgroup=javaScriptFuncBlock skipwhite skipempty
+syntax keyword   javaScriptFuncKeyword function contained
+syntax region  javaScriptFuncDef start="function" end="\([^)]*\)" contains=javaScriptFuncKeyword,javaScriptFuncArg keepend
+syntax match  javaScriptFuncArg "\(([^()]*)\)" contains=javaScriptParens,javaScriptFuncComma contained
+syntax match  javaScriptFuncComma /,/ contained
 " syntax region  javaScriptFuncBlock      contained matchgroup=javaScriptFuncBlock start="{" end="}" contains=@javaScriptAll,javaScriptParensErrA,javaScriptParensErrB,javaScriptParen,javaScriptBracket,javaScriptBlock fold
 
 syn match	javaScriptBraces	   "[{}\[\]]"
@@ -194,6 +196,8 @@ function! JavaScriptFold()
 
 	setl foldtext=FoldText()
 endfunction
+
+au FileType javascript call JavaScriptFold()
 
 " }}}
 
@@ -232,7 +236,7 @@ if version >= 508 || !exists("did_javascript_syn_inits")
   HiLink javaScriptIdentifier           Identifier
   HiLink javaScriptRepeat               Repeat
   HiLink javaScriptStatement            Statement
-  HiLink javaScriptFunction             Function
+  HiLink javaScriptFuncKeyword             Function
   HiLink javaScriptMessage              Keyword
   HiLink javaScriptDeprecated           Exception
   HiLink javaScriptError                Error
@@ -274,10 +278,12 @@ if version >= 508 || !exists("did_javascript_syn_inits")
 	HiLink javaScriptAjaxMethods        Exception
 	HiLink javaScriptAjaxProperties     Type
 
-	HiLink javaScriptFuncName           Title
+	HiLink javaScriptFuncDef            Title
+    HiLink javaScriptFuncArg            Special
+    HiLink javaScriptFuncComma          Operator  
 
 	HiLink javaScriptHtmlEvents         Special
-	HiLink javaScriptHtmlElemProperties   Type
+	HiLink javaScriptHtmlElemProperties Type
 
 	HiLink javaScriptEventListenerKeywords Keyword
 
