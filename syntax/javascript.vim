@@ -23,7 +23,7 @@ if version < 600 && exists("javaScript_fold")
   unlet javaScript_fold
 endif
 
-"" dollar sigh is permittd anywhere in an identifier
+"" dollar sign is permitted anywhere in an identifier
 setlocal iskeyword+=$
 
 syntax sync fromstart
@@ -182,7 +182,7 @@ syntax region  javaScriptFuncName       contained matchgroup=javaScriptFuncName 
 syn match	javaScriptBraces	   "[{}\[\]]"
 syn match	javaScriptParens	   "[()]"
 syn match	javaScriptOpSymbols	   "=\{1,3}\|!==\|!=\|<\|>\|>=\|<=\|++\|+=\|--\|-="
-syn match   javaScriptEndColons    "[;,]$"
+syn match   javaScriptEndColons    "[;,]"
 syn match   javaScriptLogicSymbols "\(&&\)\|\(||\)"
 
 " JavaScriptFold Function {{{
