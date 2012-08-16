@@ -201,8 +201,6 @@ function! JavaScriptFold()
 	setl foldtext=FoldText()
 endfunction
 
-au FileType javascript call JavaScriptFold()
-
 " }}}
 
 " Define the default highlighting.
