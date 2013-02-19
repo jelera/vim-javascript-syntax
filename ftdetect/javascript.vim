@@ -1,6 +1,5 @@
-function! s:DetectJS()
-    if getline(1) =~# '^#!.*/bin/env\s\+node\>'
-        setfiletype javascript
-    endif
-endfunction
-autocmd BufNewFile,BufRead * call s:DetectJS()
+" Language:    JavaScript
+" Maintainer:  othree <othree@gmail.com>
+" URL:         https://github.com/othree/javascript-libraries-syntax.vim
+
+autocmd BufNewFile,BufRead *.js set filetype=javascript
