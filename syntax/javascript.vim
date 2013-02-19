@@ -210,7 +210,7 @@ function! JavaScriptFold()
 	setl foldtext=FoldText()
 endfunction
 
-au FileType javascript call JavaScriptFold()
+" au FileType javascript call JavaScriptFold()
 
 " }}}
 
