@@ -1,6 +1,7 @@
 #Enhanced Javascript Syntax for Vim
 
 ###Credits
+- Jose Elera, [Enhanced Javascript syntax](http://www.vim.org/scripts/script.php?script_id=3425)
 - Zhao Yi, Claudio Fleiner, Scott Shattuck (This file is based on their hard work)
 - gumnos (From the #vim IRC Channel in Freenode) (Who helped me figured out the crazy Vim Regexes)
 
@@ -18,13 +19,11 @@ To enable code folding add the following to your `.vimrc`.
 
     au FileType javascript call JavaScriptFold()
 
-
 ###TODO
 You can help me improve it too.
 
 - The separate highlight of the arguments
-- I know this is a syntax file, but having an autocompletion file.
-- Add keywords for the popular third-party libraries like jQuery, YUI, Prototype, etc.
+- Add new stuff from new specs
 
 ###Screenshots
 This is the stock Javascript syntax file
