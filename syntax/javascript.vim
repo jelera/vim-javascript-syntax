@@ -26,6 +26,11 @@ endif
 "" dollar sign is permitted anywhere in an identifier
 setlocal iskeyword+=$
 
+"" Remove dollar sign from identifier when embedded in a PHP file
+if &filetype == 'php'
+  setlocal iskeyword-=$
+endif
+
 syntax sync fromstart
 
 "" syntax coloring for Node.js shebang line
