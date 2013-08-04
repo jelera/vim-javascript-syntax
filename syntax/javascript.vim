@@ -29,7 +29,7 @@ setlocal iskeyword+=$
 syntax sync fromstart
 
 "" syntax coloring for Node.js shebang line
-syn match shebang "^#!.*/bin/env\s\+node\>"
+syn match shebang "^#!.*"
 hi link shebang Comment
 
 "" JavaScript comments"{{{
