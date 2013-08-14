@@ -202,8 +202,6 @@ function! JavaScriptFold()
 	setl foldmethod=syntax
 	setl foldlevelstart=1
 	syn region foldBraces start=/{/ end=/}/ transparent fold keepend extend
-
-	setl foldtext=FoldText()
 endfunction
 
 " }}}
