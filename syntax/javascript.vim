@@ -186,8 +186,10 @@ endif
 
 syntax keyword   javaScriptFuncKeyword function contained
 syntax region  javaScriptFuncDef start="function" end="\([^)]*\)" contains=javaScriptFuncKeyword,javaScriptFuncArg keepend
+syntax region  javascriptFuncExp      start=/\w\+\s\==\s\=function/ end="\([^)]*\)" contains=javascriptFuncEq,javascriptFuncKeyword,javascriptFuncArg keepend
 syntax match  javaScriptFuncArg "\(([^()]*)\)" contains=javaScriptParens,javaScriptFuncComma contained
 syntax match  javaScriptFuncComma /,/ contained
+syntax match   javascriptFuncEq		  /=/ contained
 " syntax region  javaScriptFuncBlock      contained matchgroup=javaScriptFuncBlock start="{" end="}" contains=@javaScriptAll,javaScriptParensErrA,javaScriptParensErrB,javaScriptParen,javaScriptBracket,javaScriptBlock fold
 
 syn match	javaScriptBraces	   "[{}\[\]]"
@@ -284,6 +286,7 @@ if version >= 508 || !exists("did_javascript_syn_inits")
 	HiLink javaScriptAjaxProperties     Type
 
 	HiLink javaScriptFuncDef            Title
+	HiLink javascriptFuncExp              Title
     HiLink javaScriptFuncArg            Special
     HiLink javaScriptFuncComma          Operator  
 
