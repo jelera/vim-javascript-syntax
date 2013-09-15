@@ -287,6 +287,7 @@ if version >= 508 || !exists("did_javascript_syn_inits")
 	HiLink javaScriptFuncDef            Title
 	HiLink javascriptFuncExp              Title
     HiLink javaScriptFuncArg            Special
+    HiLink javascriptFuncComma         	Operator
     HiLink javascriptFuncEq            	Operator
 
 	HiLink javaScriptHtmlEvents         Special
