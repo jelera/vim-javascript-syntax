@@ -24,9 +24,9 @@ This is a syntax plugin, not an indentation one. For indentation, this is the [r
 ###TODO
 You can help me improve it too.
 
-- The separate highlight of the arguments
-- I know this is a syntax file, but having an autocompletion file.
-- Add keywords for the popular third-party libraries like jQuery, YUI, Prototype, etc.
+- ~~The separate highlight of the arguments~~ Thanks to [Billychan](https://github.com/jelera/vim-javascript-syntax/commit/b03f40ff6ddf605ac146634a651632d6c1e8a50b) for this
+- ~~I know this is a syntax file, but having an autocompletion file.~~ So far a better autocompletion can be achieved by [Tern for Vim](https://github.com/marijnh/tern_for_vim)
+- ~~Add keywords for the popular third-party libraries like jQuery, YUI, Prototype, etc.~~ This can be done with [this repo](https://github.com/othree/javascript-libraries-syntax.vim)
 
 ###Screenshots
 This is the stock Javascript syntax file
