@@ -21,6 +21,21 @@ To enable code folding add the following to your `.vimrc`.
 ###Note
 This is a syntax plugin, not an indentation one. For indentation, this is the [recommended one](https://github.com/vim-scripts/JavaScript-Indent) by Preston Koprivica.
 
+###Installation
+- Using [NeoBundle](https://github.com/Shougo/neobundle.vim) **(Which I recommend)**
+
+		NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
+
+- Using [Vundle](https://github.com/gmarik/vundle)
+
+		Bundle 'jelera/vim-javascript-syntax'
+
+- Using [Pathogen](https://github.com/tpope/vim-pathogen)
+
+		$ cd ~/.vim/bundle
+		$ git clone https://github.com/jelera/vim-javascript-syntax.git
+	
+
 ###TODO
 You can help me improve it too.
 
@@ -37,6 +52,3 @@ This is with the Enhanced Syntax file
 
 ###License
 The same as Vim
-
-
-
