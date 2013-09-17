@@ -19,8 +19,7 @@ To enable code folding add the following to your `.vimrc`.
     au FileType javascript call JavaScriptFold()
 
 ###Note
-This is a syntax plugin, not an indentation one. For indentation, you need to add another plugin
-(as mentioned [here](https://github.com/jelera/vim-javascript-syntax/issues/22#issuecomment-19917301)).
+This is a syntax plugin, not an indentation one. For indentation, this is the [recommended one](https://github.com/vim-scripts/JavaScript-Indent) by Preston Koprivica.
 
 ###TODO
 You can help me improve it too.
