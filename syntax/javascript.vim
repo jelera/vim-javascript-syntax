@@ -119,7 +119,7 @@ syntax keyword javaScriptBranch         break continue
 syntax keyword javaScriptLabel          case default
 syntax keyword javaScriptStatement      return with
 
-syntax keyword javaScriptGlobalObjects  Array Boolean Date Function Infinity Math Number NaN Object Packages RegExp String netscape
+syntax keyword javaScriptGlobalObjects  Array Boolean Date Function Math Number Object RegExp String
 
 syntax keyword javaScriptExceptions     try catch throw finally Error EvalError RangeError ReferenceError SyntaxError TypeError URIError
 
