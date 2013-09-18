@@ -69,7 +69,7 @@ if !exists("javascript_ignore_javaScriptdoc")
 	" syntax coloring for JSDoc comments (HTML)
 	"unlet b:current_syntax
 
-	syntax region javaScriptDocComment        matchgroup=javaScriptComment start="/\*\*\s*$"  end="\*/" contains=javaScriptDocTags,javaScriptCommentTodo,javaScriptCvsTag,@javaScriptHtml,@Spell fold
+	syntax region javaScriptDocComment        matchgroup=javaScriptComment start="/\*\*\s*$"  end="\*/" contains=javaScriptDocTags,javaScriptCommentTodo,@javaScriptHtml,@Spell fold
 	syntax match  javaScriptDocTags           contained "@\(param\|argument\|returns\=\|requires\|exception\|throws\|type\|class\|extends\|see\|link\|member\|module\|method\|title\|namespace\|optional\|default\|base\|file\)\>" nextgroup=javaScriptDocParam,javaScriptDocSeeTag skipwhite
 	syntax match  javaScriptDocTags           contained "@\(beta\|deprecated\|description\|fileoverview\|author\|license\|version\|constructor\|private\|protected\|final\|ignore\|addon\|exec\)\>"
 	syntax match  javaScriptDocParam          contained "\%(#\|\w\|\.\|:\|\/\)\+"
@@ -205,21 +205,27 @@ if version >= 508 || !exists("did_javascript_syn_inits")
 	else
 		command -nargs=+ HiLink hi def link <args>
 	endif
-	HiLink javaScriptEndColons              Exception
+	HiLink javaScriptEndColons              Operator
 	HiLink javaScriptOpSymbols              Operator
 	HiLink javaScriptLogicSymbols           Boolean
 	HiLink javaScriptBraces                 Function
 	HiLink javaScriptParens                 Operator
+
 	HiLink javaScriptComment                Comment
 	HiLink javaScriptLineComment            Comment
 	HiLink javaScriptDocComment             Comment
 	HiLink javaScriptCommentTodo            Todo
-	HiLink javaScriptCvsTag                 Function
+
 	HiLink javaScriptDocTags                Special
 	HiLink javaScriptDocSeeTag              Function
 	HiLink javaScriptDocParam               Function
+
 	HiLink javaScriptString                 String
 	HiLink javaScriptRegexpString           String
+
+	HiLink javaScriptNumber                 Number
+	HiLink javaScriptFloat                  Number
+
 	HiLink javaScriptGlobal                 Constant
 	HiLink javaScriptCharacter              Character
 	HiLink javaScriptPrototype              Type
@@ -228,20 +234,10 @@ if version >= 508 || !exists("did_javascript_syn_inits")
 	HiLink javaScriptIdentifier             Identifier
 	HiLink javaScriptRepeat                 Repeat
 	HiLink javaScriptStatement              Statement
-	HiLink javaScriptFuncKeyword            Function
 	HiLink javaScriptMessage                Keyword
-	HiLink javaScriptDeprecated             Exception
-	HiLink javaScriptError                  Error
-	HiLink javaScriptParensError            Error
-	HiLink javaScriptParensErrA             Error
-	HiLink javaScriptParensErrB             Error
-	HiLink javaScriptParensErrC             Error
 	HiLink javaScriptReserved               Keyword
 	HiLink javaScriptOperator               Operator
-	HiLink javaScriptWebAPI                 Type
 	HiLink javaScriptNull                   Type
-	HiLink javaScriptNumber                 Number
-	HiLink javaScriptFloat                  Number
 	HiLink javaScriptBoolean                Boolean
 	HiLink javaScriptLabel                  Label
 	HiLink javaScriptSpecial                Special
@@ -249,38 +245,47 @@ if version >= 508 || !exists("did_javascript_syn_inits")
 	HiLink javaScriptGlobalObjects          Special
 	HiLink javaScriptExceptions             Special
 
-	HiLink javaScriptDomErrNo               Constant
+	HiLink javaScriptDeprecated             Exception
+	HiLink javaScriptError                  Error
+	HiLink javaScriptParensError            Error
+	HiLink javaScriptParensErrA             Error
+	HiLink javaScriptParensErrB             Error
+	HiLink javaScriptParensErrC             Error
+	HiLink javaScriptDomErrNo               Error
+
 	HiLink javaScriptDomNodeConsts          Constant
 	HiLink javaScriptDomElemAttrs           Label
-	HiLink javaScriptDomElemFuncs           PreProc
+	HiLink javaScriptDomElemFuncs           Type
+
+	HiLink javaScriptWebAPI                 Type
 
 	HiLink javaScriptHtmlElemAttrs          Label
-	HiLink javaScriptHtmlElemFuncs          PreProc
+	HiLink javaScriptHtmlElemFuncs          Type
 
-	HiLink javaScriptCssStyles              Label
+	HiLink javaScriptCssStyles              Type
 
 	HiLink javaScriptBrowserObjects         Constant
 
 	HiLink javaScriptDOMObjects             Constant
-	HiLink javaScriptDOMMethods             Exception
-	HiLink javaScriptDOMProperties          Type
+	HiLink javaScriptDOMMethods             Type
+	HiLink javaScriptDOMProperties          Label
 
-	HiLink javaScriptAjaxObjects            htmlH1
-	HiLink javaScriptAjaxMethods            Exception
-	HiLink javaScriptAjaxProperties         Type
+	HiLink javaScriptAjaxObjects            Constant
+	HiLink javaScriptAjaxMethods            Type
+	HiLink javaScriptAjaxProperties         Label
 
-	HiLink javaScriptFuncDef                Constant
+	HiLink javaScriptFuncKeyword            Function
+	HiLink javaScriptFuncDef                PreProc
 	HiLink javascriptFuncExp                Title
-	HiLink javaScriptFuncArg                PreProc
+	HiLink javaScriptFuncArg               	Special
 	HiLink javascriptFuncComma              Operator
 	HiLink javascriptFuncEq                 Operator
 
-	HiLink javaScriptHtmlEvents             Special
-	HiLink javaScriptHtmlElemProperties     Type
+	HiLink javaScriptHtmlEvents             Constant
+	HiLink javaScriptHtmlElemProperties     Label
 
-	HiLink javaScriptEventListenerKeywords  Keyword
+	HiLink javaScriptEventListenerKeywords  Type
 
-	HiLink javaScriptNumber                 Number
 	HiLink javaScriptPropietaryObjects      Constant
 
 	delcommand HiLink
