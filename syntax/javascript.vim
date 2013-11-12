@@ -172,11 +172,11 @@ endif
 "}}}
 " Function and arguments highlighting {{{
 syntax keyword javaScriptFuncKeyword     function contained
-syntax region  javascriptFuncExp         start=/\w\+\s\==\s\=function/ end="\([^)]*\)" contains=javascriptFuncEq,javascriptFuncKeyword,javascriptFuncArg keepend
+syntax region  javascriptFuncExp         start=/\w\+\s\==\s\=function\>/ end="\([^)]*\)" contains=javascriptFuncEq,javascriptFuncKeyword,javascriptFuncArg keepend
 syntax match   javaScriptFuncArg         "\(([^()]*)\)" contains=javaScriptParens,javaScriptFuncComma contained
 syntax match   javaScriptFuncComma       /,/ contained
 syntax match   javascriptFuncEq          /=/ contained
-syntax region  javaScriptFuncDef         start="function" end="\([^)]*\)" contains=javaScriptFuncKeyword,javaScriptFuncArg keepend
+syntax region  javaScriptFuncDef         start="\<function\>" end="\([^)]*\)" contains=javaScriptFuncKeyword,javaScriptFuncArg keepend
 "}}}
 " Braces, Parens, symbols, colons {{{
 syn match javaScriptBraces       "[{}\[\]]"
