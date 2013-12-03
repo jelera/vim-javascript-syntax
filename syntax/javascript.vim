@@ -1,8 +1,8 @@
 " Vim syntax file
 " Language:     JavaScript
 " Maintainer:   Jose Elera Campana <https://github.com/jelera>
-" Last Change:  September, 17 2013
-" Version:      0.8.0
+" Last Change:  December, 1 2013
+" Version:      0.8.1
 " Changes:      Go to https://github.com/jelera/vim-javascript-syntax for
 "               recent changes.
 " Credits:      Zhao Yi, Claudio Fleiner, Scott Shattuck (This file is based
@@ -69,8 +69,8 @@ if !exists("javascript_ignore_javaScriptdoc")
 	" syntax coloring for JSDoc comments (HTML)
 	"unlet b:current_syntax
 
-	syntax region javaScriptDocComment        matchgroup=javaScriptComment start="/\*\*\s*$"  end="\*/" contains=javaScriptDocTags,javaScriptCommentTodo,@javaScriptHtml,@Spell fold
-	syntax match  javaScriptDocTags           contained "@\(param\|argument\|returns\=\|requires\|exception\|throws\|type\|class\|extends\|see\|link\|member\|module\|method\|title\|namespace\|optional\|default\|base\|file\)\>" nextgroup=javaScriptDocParam,javaScriptDocSeeTag skipwhite
+	syntax region javaScriptDocComment        matchgroup=javaScriptComment start="/\*\*\s*$"  end="\*/" contains=javaScriptDocTags,javaScriptCommentTodo,@javaScriptHtml,jsInJsdocExample,@Spell fold
+	syntax match  javaScriptDocTags           contained "@\(param\|argument\|returns\=\|requires\|exception\|throws\|type\|class\|extends\|see\|link\|member\|module\|method\|title\|namespace\|name\|memberof\|exports\|callback\|typedef\|property\|optional\|default\|base\|file\)\>" nextgroup=javaScriptDocParam,javaScriptDocSeeTag skipwhite
 	syntax match  javaScriptDocTags           contained "@\(beta\|deprecated\|description\|fileoverview\|author\|license\|version\|constructor\|private\|protected\|final\|ignore\|addon\|exec\)\>"
 	syntax match  javaScriptDocParam          contained "\%(#\|\w\|\.\|:\|\/\)\+"
 	syntax region javaScriptDocSeeTag         contained matchgroup=javaScriptDocSeeTag start="{" end="}" contains=javaScriptDocTags
@@ -302,3 +302,5 @@ let b:current_syntax = "javascript"
 if main_syntax == 'javascript'
 	unlet main_syntax
 endif
+syntax region jsInJsdocExample matchgroup=Snip start="^\s*\* @example" end="\(^\s*\* [^[:space:]]\)\@=" containedin=@javaScriptComment contains=@javaScriptAll
+hi link Snip SpecialComment
