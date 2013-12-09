@@ -45,9 +45,10 @@ Bundle 'jelera/vim-javascript-syntax'
 git clone https://github.com/jelera/vim-javascript-syntax.git ~/.vim/bundle/vim-javascript-syntax
 ```
 ### Suggested Companion Plugins
-- Indentation, can be achieved with [Javascript-Indent](https://github.com/vim-scripts/JavaScript-Indent) by Preston Koprivica.
-- Autocompletion by [Tern for Vim](https://github.com/marijnh/tern_for_vim)
-- Popular third-party libraries like jQuery, YUI, Prototype, by [javascript-libraries-syntax](https://github.com/othree/javascript-libraries-syntax.vim)
+- **Indentation**, can be achieved with [Javascript-Indent](https://github.com/vim-scripts/JavaScript-Indent) by Preston Koprivica. On my testing, it has proved to be the most capable and also indents HTML and JS inside HTML.
+The project is unmaintained for now, but you could fork it and improve upon it.
+- **Autocompletion** by [Tern for Vim](https://github.com/marijnh/tern_for_vim)
+- Popular **third-party libraries support** like jQuery, YUI, Prototype, by [javascript-libraries-syntax](https://github.com/othree/javascript-libraries-syntax.vim)
 
 ### Contributions
 Always welcome, make sure your commit message should follow this
