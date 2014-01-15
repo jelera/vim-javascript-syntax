@@ -23,12 +23,9 @@ if version < 600 && exists("javaScript_fold")
 	unlet javaScript_fold
 endif
 
-"" dollar sign is permitted anywhere in an identifier
-setlocal iskeyword+=$
-
 "" Remove dollar sign from identifier when embedded in a PHP file
-if &filetype == 'php'
-	setlocal iskeyword-=$
+if &filetype == 'javascript'
+	setlocal iskeyword+=$
 endif
 
 syntax sync fromstart
