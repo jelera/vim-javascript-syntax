@@ -35,7 +35,7 @@ NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascr
   add this line to your `.vimrc`
 
 ```vim
-Bundle 'jelera/vim-javascript-syntax'
+Plugin 'jelera/vim-javascript-syntax'
 ```
 
 - Using [Pathogen](https://github.com/tpope/vim-pathogen),
