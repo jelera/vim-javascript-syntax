@@ -78,8 +78,8 @@ endif
 "}}}
 " Strings, Numbers and Regex Highlight {{{
 syntax match   javaScriptSpecial          "\\\d\d\d\|\\."
-syntax region  javaScriptString           start=+"+  skip=+\\\\\|\\"\|\\\n+  end=+"\|$+	contains=javaScriptSpecial,@htmlPreproc
-syntax region  javaScriptString           start=+'+  skip=+\\\\\|\\'\|\\\n+  end=+'\|$+	contains=javaScriptSpecial,@htmlPreproc
+syntax region  javaScriptString	          start=+"+  skip=+\\\\\|\\"+  end=+"\|$+	contains=javaScriptSpecial,@htmlPreproc
+syntax region  javaScriptString	          start=+'+  skip=+\\\\\|\\'+  end=+'\|$+	contains=javaScriptSpecial,@htmlPreproc
 
 syntax match   javaScriptSpecialCharacter "'\\.'"
 syntax match   javaScriptNumber           "-\=\<\d\+L\=\>\|0[xX][0-9a-fA-F]\+\>"
