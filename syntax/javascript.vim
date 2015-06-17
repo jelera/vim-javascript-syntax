@@ -67,8 +67,7 @@ if !exists("javascript_ignore_javaScriptdoc")
 	"unlet b:current_syntax
 
 	syntax region javaScriptDocComment        matchgroup=javaScriptComment start="/\*\*\s*$"  end="\*/" contains=javaScriptDocTags,javaScriptCommentTodo,@javaScriptHtml,jsInJsdocExample,@Spell fold
-	syntax match  javaScriptDocTags           contained "@\(param\|argument\|returns\=\|requires\|exception\|throws\|type\|class\|extends\|see\|link\|member\|module\|method\|title\|namespace\|name\|memberof\|exports\|callback\|typedef\|property\|optional\|default\|base\|file\|mixes\|mixin\|alias\|const\|enum\|fires\|event\|readonly\|tutorial\)\>" nextgroup=javaScriptDocParam,javaScriptDocSeeTag skipwhite
-	syntax match  javaScriptDocTags           contained "@\(beta\|deprecated\|description\|fileoverview\|author\|license\|version\|constructor\|private\|protected\|final\|ignore\|addon\|exec\)\>"
+	syntax match  javaScriptDocTags           contained "@\(abstract\|access\|alias\|arg\|argument\|augments\|author\|borrows\|callback\|class\|classdesc\|const\|constant\|constructor\|constructs\|copyright\|default\|defaultvalue\|deprecated\|desc\|description\|emits\|enum\|event\|example\|exception\|exports\|extends\|external\|file\|fileoverview\|fires\|func\|function\|global\|host\|ignore\|implements\|inheritdoc\|inner\|instance\|interface\|kind\|lends\|license\|link\|linkcode\|linkplain\|listens\|member\|memberof\|method\|mixes\|mixin\|module\|name\|namespace\|override\|overview\|param\|private\|prop\|property\|protected\|public\|readonly\|requires\|return\|returns\|see\|since\|static\|summary\|this\|throws\|todo\|tutorial\|tutorial\|type\|typedef\|var\|variation\|version\|virtual\)\>" nextgroup=javaScriptDocParam,javaScriptDocSeeTag skipwhite
 	syntax match  javaScriptDocParam          contained "\%(#\|\w\|\.\|:\|\/\)\+"
 	syntax region javaScriptDocSeeTag         contained matchgroup=javaScriptDocSeeTag start="{" end="}" contains=javaScriptDocTags
 
