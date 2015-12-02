@@ -44,7 +44,7 @@ syntax keyword javaScriptMessage        alert confirm prompt status
 syntax keyword javaScriptGlobal         self top parent
 syntax keyword javaScriptDeprecated     escape unescape all applets alinkColor bgColor fgColor linkColor vlinkColor xmlEncoding
 syntax keyword javaScriptConditional    if else switch
-syntax keyword javaScriptRepeat         do while for in
+syntax keyword javaScriptRepeat         do while for in of
 syntax keyword javaScriptBranch         break continue
 syntax keyword javaScriptLabel          case default
 syntax keyword javaScriptPrototype      prototype
@@ -183,7 +183,7 @@ syntax match javaScriptOpSymbols    "=\{1,3}\|!==\|!=\|<\|>\|>=\|<=\|++\|+=\|--\
 syntax match javaScriptEndColons    "[;,]"
 syntax match javaScriptLogicSymbols "\(&&\)\|\(||\)"
 "}}}
-" ES6 String Interpolation
+" ES6 String Interpolation {{{
 syntax match  javaScriptTemplateDelim    "\${\|}" contained
 syntax region javaScriptTemplateVar      start=+${+ end=+}+                        contains=javaScriptTemplateDelim keepend
 syntax region javaScriptTemplateString   start=+`+  skip=+\\\(`\|$\)+  end=+`+     contains=javaScriptTemplateVar,javaScriptSpecial keepend
@@ -213,6 +213,7 @@ if version >= 508 || !exists("did_javascript_syn_inits")
 	HiLink javaScriptLogicSymbols           Boolean
 	HiLink javaScriptBraces                 Function
 	HiLink javaScriptParens                 Operator
+	HiLink javaScriptTemplateDelim          Operator
 
 	HiLink javaScriptComment                Comment
 	HiLink javaScriptLineComment            Comment
@@ -225,6 +226,7 @@ if version >= 508 || !exists("did_javascript_syn_inits")
 
 	HiLink javaScriptString                 String
 	HiLink javaScriptRegexpString           String
+	HiLink javaScriptTemplateString         String
 
 	HiLink javaScriptNumber                 Number
 	HiLink javaScriptFloat                  Number
