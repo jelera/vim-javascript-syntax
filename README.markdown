@@ -63,7 +63,8 @@ The project is unmaintained for now, but you could fork it and improve upon it.
 ### Contributions
 This project follows the
 [Git-flow](http://nvie.com/posts/a-successful-git-branching-model/) methodology,
-this will keep the master branch clean for new stable releases.
+this will keep the master branch clean for new stable releases. Also the
+version numbering convention will be [this one](http://stackoverflow.com/a/65750)
 
 More about Git-flow at:
 - [Daniel Kummer's Git Flow cheatsheet](http://danielkummer.github.io/git-flow-cheatsheet/)
@@ -76,7 +77,7 @@ Follow this steps
 - Checkout the `develop` branch.
 - For new features: Create a new `feature` branch using git-flow.
 - For bugfixes: Commit in the `develop` branch.
-- Bump the date on the syntax file.
+- Bump the date and version number on the syntax file.
 - When done, don't forget to push the `develop` branch.
 - Submit a pull request.
 
