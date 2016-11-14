@@ -34,7 +34,7 @@ syntax match shebang "^#!.*"
 hi link shebang Comment
 
 " Statement Keywords {{{
-syntax keyword javaScriptSource         import export
+syntax keyword javaScriptSource         import export from
 syntax keyword javaScriptIdentifier     arguments this let var void yield
 syntax keyword javaScriptOperator       delete new instanceof typeof
 syntax keyword javaScriptBoolean        true false
@@ -85,7 +85,7 @@ syntax region  javaScriptRegexpString     start=+/[^/*]+me=e-1 skip=+\\\\\|\\/+ 
 syntax match   javaScriptFloat          /\<-\=\%(\d\+\.\d\+\|\d\+\.\|\.\d\+\)\%([eE][+-]\=\d\+\)\=\>/
 "}}}
 "  DOM, Browser and Ajax Support   {{{
-syntax keyword javaScriptBrowserObjects           window navigator screen history location
+syntax keyword javaScriptBrowserObjects           window navigator screen history location console
 
 syntax keyword javaScriptDOMObjects               document event HTMLElement Anchor Area Base Body Button Form Frame Frameset Image Link Meta Option Select Style Table TableCell TableRow Textarea
 syntax keyword javaScriptDOMMethods               createTextNode createElement insertBefore replaceChild removeChild appendChild  hasChildNodes  cloneNode  normalize  isSupported  hasAttributes  getAttribute  setAttribute  removeAttribute  getAttributeNode  setAttributeNode  removeAttributeNode  getElementsByTagName  hasAttribute  getElementById adoptNode close compareDocumentPosition createAttribute createCDATASection createComment createDocumentFragment createElementNS createEvent createExpression createNSResolver createProcessingInstruction createRange createTreeWalker elementFromPoint evaluate getBoxObjectFor getElementsByClassName getSelection getUserData hasFocus importNode
