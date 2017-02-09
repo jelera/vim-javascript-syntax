@@ -1,8 +1,8 @@
 " Vim syntax file
 "      Language: JavaScript
 "    Maintainer: Jose Elera Campana <https://github.com/jelera>
-" Last Modified: Wed 24 Feb 2016 03:35:03 AM CST
-"       Version: 0.8.2
+" Last Modified: Thu 09 Feb 2017 12:14:57 PM EST
+"       Version: 0.8.3
 "       Credits: Zhao Yi, Claudio Fleiner, Scott Shattuck (This file is based
 "                on their hard work), gumnos (From the #vim IRC Channel in
 "                Freenode), all the contributors at this project's github page
@@ -76,8 +76,8 @@ endif
 "}}}
 " Strings, Numbers and Regex Highlight {{{
 syntax match   javaScriptSpecial          "\\\d\d\d\|\\."
-syntax region  javaScriptString	          start=+"+  skip=+\\\\\|\\"+  end=+"\|$+	contains=javaScriptSpecial,@htmlPreproc
-syntax region  javaScriptString	          start=+'+  skip=+\\\\\|\\'+  end=+'\|$+	contains=javaScriptSpecial,@htmlPreproc
+syntax region  javaScriptString           start=+"+  skip=+\\\\\|\\"\|\\\n+  end=+"\|$+	contains=javaScriptSpecial,@htmlPreproc
+syntax region  javaScriptString           start=+'+  skip=+\\\\\|\\'\|\\\n+  end=+'\|$+	contains=javaScriptSpecial,@htmlPreproc
 
 syntax match   javaScriptSpecialCharacter "'\\.'"
 syntax match   javaScriptNumber           "-\=\<\d\+L\=\>\|0[xX][0-9a-fA-F]\+\>"
