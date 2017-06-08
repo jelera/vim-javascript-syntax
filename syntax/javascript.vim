@@ -53,7 +53,7 @@ syntax keyword javaScriptExceptions     try catch throw finally Error EvalError 
 syntax keyword javaScriptReserved       abstract enum int short boolean export interface static byte extends long super char final native synchronized class float package throws const goto private transient debugger implements protected volatile double import public
 "}}}
 " Comments {{{
-syntax keyword javaScriptCommentTodo      TODO FIXME XXX TBD contained
+syntax keyword javaScriptCommentTodo      TODO FIXME XXX TBD OPTIMIZE HACK REVIEW contained
 syntax match   javaScriptLineComment      "\/\/.*" contains=@Spell,javaScriptCommentTodo
 syntax match   javaScriptCommentSkip      "^[ \t]*\*\($\|[ \t]\+\)"
 syntax region  javaScriptComment          start="/\*"  end="\*/" contains=@Spell,javaScriptCommentTodo
