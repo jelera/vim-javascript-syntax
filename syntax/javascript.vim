@@ -42,7 +42,7 @@ syntax keyword javaScriptBoolean        true false
 syntax keyword javaScriptNull           null undefined
 syntax keyword javaScriptMessage        alert confirm prompt status
 syntax keyword javaScriptGlobal         self top parent
-syntax keyword javaScriptDeprecated     escape unescape all applets alinkColor bgColor fgColor linkColor vlinkColor xmlEncoding
+syntax keyword javaScriptDeprecated     escape unescape applets alinkColor bgColor fgColor linkColor vlinkColor xmlEncoding
 syntax keyword javaScriptConditional    if else switch
 syntax keyword javaScriptRepeat         do while for in of
 syntax keyword javaScriptBranch         break continue
@@ -51,7 +51,7 @@ syntax keyword javaScriptPrototype      prototype
 syntax keyword javaScriptStatement      return with
 syntax keyword javaScriptGlobalObjects  Array Boolean Date Function Math Number Object RegExp String
 syntax keyword javaScriptExceptions     try catch throw finally Error EvalError RangeError ReferenceError SyntaxError TypeError URIError
-syntax keyword javaScriptReserved       abstract enum int short boolean export interface static byte extends long super char final native synchronized class float package throws goto private transient debugger implements protected volatile double import public
+syntax keyword javaScriptReserved       abstract all enum int short boolean export interface static byte extends long super char final native synchronized class float package throws goto private transient debugger implements protected volatile double import public
 "}}}
 " Comments {{{
 syntax keyword javaScriptCommentTodo      TODO FIXME XXX TBD OPTIMIZE HACK REVIEW contained
