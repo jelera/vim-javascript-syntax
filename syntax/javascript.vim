@@ -1,7 +1,8 @@
 " Vim syntax file
 "      Language: JavaScript
-"    Maintainer: Jose Elera Campana <https://github.com/jelera>
-" Last Modified: Wed 24 Feb 2016 03:35:03 AM CST
+"    Maintainer: Jose Elera <https://github.com/jelera>
+"    			 https://jelera.github.io
+" Last Modified: Thu 11 Jul 2019 11:53:28 AM CDT
 "       Version: 0.8.2
 "       Credits: Zhao Yi, Claudio Fleiner, Scott Shattuck (This file is based
 "                on their hard work), gumnos (From the #vim IRC Channel in
