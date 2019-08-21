@@ -32,11 +32,11 @@ This is with the Enhanced Syntax file
 This is with the Enhanced Syntax file
 ![Enhanced JavaScript Vim syntax](http://i.imgur.com/cmgdlO6.png)
 ### Installation
-- Using [NeoBundle](https://github.com/Shougo/neobundle.vim) **(Which I recommend)**,
+- Using [Vim-Plug](https://github.com/junegunn/vim-plug) **(Which I recommend)**,
   add this line to your `.vimrc`
 
 ```vim
-NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
+Plug 'jelera/vim-javascript-syntax'
 ```
 
 - Using [Vundle](https://github.com/gmarik/vundle),
@@ -54,9 +54,14 @@ git clone https://github.com/jelera/vim-javascript-syntax.git ~/.vim/bundle/vim-
 ```
 
 ### Suggested Companion Plugins
-- **Indentation**, can be achieved with [Javascript-Indent](https://github.com/vim-scripts/JavaScript-Indent) by Preston Koprivica. On my testing, it has proved to be the most capable and also indents HTML and JS inside HTML.
-The project is unmaintained for now, but you could fork it and improve upon it.
-- **Autocompletion** by [Tern for Vim](https://github.com/marijnh/tern_for_vim)
+- **Indentation**
+The recommended way is to use [Prettier](https://prettier.io/docs/en/vim.html) and [ALE](https://github.com/dense-analysis/ale).
+
+~~It can be achieved with [Javascript-Indent](https://github.com/vim-scripts/JavaScript-Indent) by Preston Koprivica. On my testing, it has proved to be the most capable and also indents HTML and JS inside HTML.
+The project is unmaintained for now, but you could fork it and improve upon it.~~
+- **Autocompletion**
+  - [Coc.vim](https://github.com/neoclide/coc.nvim),  as it supports **Language Server Protocol** as VSCode.
+  - [Tern for Vim](https://github.com/marijnh/tern_for_vim)
 - Popular **third-party libraries support** like jQuery, YUI, Prototype, by [javascript-libraries-syntax](https://github.com/othree/javascript-libraries-syntax.vim)
 
 
