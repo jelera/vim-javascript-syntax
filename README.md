@@ -1,11 +1,11 @@
 # Enhanced JavaScript Syntax for Vim
 
-### Credits
+## Credits
 - Zhao Yi, Claudio Fleiner, Scott Shattuck (This file is based on their hard work)
 - gumnos (From the #vim IRC Channel in Freenode) (Who helped me figured out the
   crazy Vim Regexes)
 
-### Description
+## Description
 This file is a fork of [this file](http://www.vim.org/scripts/script.php?script_id=1491)
 and [the stock one](http://fleiner.com/vim/download.html)
 
@@ -17,8 +17,10 @@ This version of this file features the following text highlights:
 - Operation, comparison and logical symbols (`=`,`==`,`===`,`!=`,etc.).
 - Separate highlight of the arguments. Thanks to [Billychan](https://github.com/jelera/vim-javascript-syntax/commit/b03f40ff6ddf605ac146634a651632d6c1e8a50b).
 
+### Rationale
+While there are already a few syntax files in the wild (some even forks from this project), the goal is to have a syntax file that has current keywords for modern ES/JS development and to be fairly lean and quick on loading.
 
-###  [Screenshots](http://imgur.com/a/7bnu3)
+##  Screenshots
 This is the stock Javascript syntax file
 #### Solarized Light
 ![Stock Vim JavaScript syntax file](http://i.imgur.com/FCVLMgl.png)
@@ -26,12 +28,15 @@ This is the stock Javascript syntax file
 This is with the Enhanced Syntax file
 ![Enhanced JavaScript Vim syntax](http://i.imgur.com/yGY3Cmm.png)
 
+More screenshots [here](http://imgur.com/a/7bnu3).
+
 #### Hybrid
 ![Stock Vim JavaScript syntax file](http://i.imgur.com/cGb3EjH.png)
 
 This is with the Enhanced Syntax file
 ![Enhanced JavaScript Vim syntax](http://i.imgur.com/cmgdlO6.png)
-### Installation
+
+## Installation
 - Using [Vim-Plug](https://github.com/junegunn/vim-plug) **(Which I recommend)**,
   add this line to your `.vimrc`
 
@@ -53,7 +58,7 @@ Plugin 'jelera/vim-javascript-syntax'
 git clone https://github.com/jelera/vim-javascript-syntax.git ~/.vim/bundle/vim-javascript-syntax
 ```
 
-### Suggested Companion Plugins
+## Suggested Companion Plugins
 - **Indentation**
 The recommended way is to use [Prettier](https://prettier.io/docs/en/vim.html) and [ALE](https://github.com/dense-analysis/ale).
 
@@ -64,31 +69,9 @@ The project is unmaintained for now, but you could fork it and improve upon it.~
   - [Tern for Vim](https://github.com/marijnh/tern_for_vim)
 - Popular **third-party libraries support** like jQuery, YUI, Prototype, by [javascript-libraries-syntax](https://github.com/othree/javascript-libraries-syntax.vim)
 
-
-### Contributions
-This project follows the
-[Git-flow](http://nvie.com/posts/a-successful-git-branching-model/) methodology,
-this will keep the master branch clean for new stable releases. Also the
-version numbering convention will be [this one](http://stackoverflow.com/a/65750)
-
-More about Git-flow at:
-- [Daniel Kummer's Git Flow cheatsheet](http://danielkummer.github.io/git-flow-cheatsheet/)
-- [Sayanee Basu's Build Podcast - Git Flow](https://www.youtube.com/watch?v=Hh-jJcJ5IJ8)
-
-#### For new contributors
-Follow this steps
-- Clone this repository.
-- Using the command line, run `git flow init -d`.
-- Checkout the `develop` branch.
-- For new features: Create a new `feature` branch using git-flow.
-- For bugfixes: Commit in the `develop` branch.
-- Bump the date and version number on the syntax file.
-- When done, don't forget to push the `develop` branch.
-- Submit a pull request.
-
+## Contributions
 While all contributions are always welcome, make sure your commit message follow this
-[**convention**](http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html)
+[**convention**](http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html).
 
-
-### License
+## License
 The same as Vim
